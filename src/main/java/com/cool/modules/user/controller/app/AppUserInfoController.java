@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
+import java.util.Map;
+
 @RequiredArgsConstructor
 @Tag(name = "用户信息", description = "用户信息")
 @CoolRestController
@@ -23,7 +25,7 @@ public class AppUserInfoController {
 
     @Operation(summary = "用户个人信息", description = "获得App、小程序或者其他应用的用户个人信息")
     @GetMapping("/person")
-    public R person() {
+    public R<Map<String, Object>> person() {
         Long userId = CoolSecurityUtil.getCurrentUserId();
         UserInfoEntity userInfoEntity = userInfoService.person(userId);
         return R.ok(EntityUtils.toMap(userInfoEntity,

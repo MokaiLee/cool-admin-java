@@ -50,7 +50,7 @@ public class DictInfoServiceImpl extends BaseServiceImpl<DictInfoMapper, DictInf
         }
         List<DictInfoEntity> infos = this.list(QueryWrapper.create()
             .select(DictInfoEntity::getId, DictInfoEntity::getName, DictInfoEntity::getTypeId,
-                DictInfoEntity::getParentId, DictInfoEntity::getValue)
+                DictInfoEntity::getParentId, DictInfoEntity::getValue, DictInfoEntity::getRemark)
             .in(DictInfoEntity::getTypeId,
                 typeData.stream().map(DictTypeEntity::getId).collect(Collectors.toList()))
             .orderBy(DICT_INFO_ENTITY.ORDER_NUM.getName(), DICT_INFO_ENTITY.CREATE_TIME.getName()));
@@ -62,6 +62,7 @@ public class DictInfoServiceImpl extends BaseServiceImpl<DictInfoMapper, DictInf
                 data.set("parentId", d.getParentId());
                 data.set("name", d.getName());
                 data.set("id", d.getId());
+                data.set("type", d.getRemark());//支持在remark字段填写页面显示反显的类型
                 data.set("value", StrUtil.isEmpty(d.getValue()) ? null : d.getValue());
                 try {
                     data.set("value", Integer.parseInt(d.getValue()));

@@ -49,7 +49,7 @@ public class AdminBaseSysLogController extends BaseController<BaseSysLogService,
 		return R.ok();
 	}
 
-	@Operation(summary = "获得日志报错时间")
+	@Operation(summary = "获得日志保存时间")
 	@PostMapping("/getKeep")
 	public R getKeep() {
 		return R.ok(baseSysConfService.getValue("logKeep"));

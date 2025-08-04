@@ -6,6 +6,11 @@ server:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/plain
 
+#日志
+logging:
+  file:
+    path: ./logs
+
 spring:
   application:
     name: cool-admin-java
@@ -70,7 +75,6 @@ spring:
             threadCount: 5
             threadPriority: 9
             threadsInheritContextClassLoaderOfInitializingThread: true
-
 # 忽略url
 ignored:
   # 忽略后台鉴权url
@@ -115,6 +119,8 @@ mybatis-flex:
   type-aliases-package: com.cool.**.entity.*
   global-config:
     print-banner: false
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
 
 
 # Cool相关配置
@@ -138,6 +144,13 @@ cool:
     local:
       # 文件访问地址
       base-url: http://127.0.0.1:${server.port}/upload
+    oss:
+      access-key-id: xxx
+      access-key-secret: xxx
+      endpoint: xxx
+      bucket: xxx
+      domain: xxx
+      timeout: 10000
   # 系统日志请求参数超过1024字节 就不记录,避免日志过大
   log:
     # 请求参数最大字节,超过请求参数不记录

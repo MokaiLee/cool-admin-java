@@ -21,4 +21,6 @@ public class OssFileProperties {
     private String endpoint;
     // 超时时间
     private Long timeout;
+    //完整域名
+    private String domain;
 }

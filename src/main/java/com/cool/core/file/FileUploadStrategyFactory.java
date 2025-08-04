@@ -26,7 +26,7 @@ public class FileUploadStrategyFactory {
 
 	private FileUploadStrategy getStrategy(PluginInfoEntity pluginInfoEntity) {
 		if (ObjUtil.isEmpty(pluginInfoEntity)) {
-			return applicationContext.getBean("localFileUploadStrategy", FileUploadStrategy.class);
+			return applicationContext.getBean("cosFileUploadStrategy", FileUploadStrategy.class);
 		}
 		return applicationContext.getBean("cloudFileUploadStrategy", FileUploadStrategy.class);
 	}
